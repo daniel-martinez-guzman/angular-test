@@ -1,0 +1,32 @@
+<section>
+  <div>
+    <p>Filtrar por nombre</p>
+    <input>
+  </div>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Tipo</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Tipo documento</th>
+      <th>Número documento</th>
+      <th>Email</th>
+      <th>Celular</th>
+      <th>País</th>
+    </tr>
+    <tr *ngFor="let item of participants | paginate: { itemsPerPage: 3, currentPage: tablePage }">
+      <td>{{ item.id }}</td>
+      <td>{{ item.type }}</td>
+      <td>{{ item.attributes.name }}</td>
+      <td>{{ item.attributes.surname }}</td>
+      <td>{{ item.attributes.document_type }}</td>
+      <td>{{ item.attributes.identification_number }}</td>
+      <td>{{ item.attributes.email }}</td>
+      <td>{{ item.attributes.mobile_number | appFilter:4}}</td>
+      <td>{{ item.attributes.country }}</td>
+    </tr>
+  </table>
+  <pagination-controls (pageChange)="tablePage = $event"></pagination-controls>
+<section>
